@@ -1,0 +1,72 @@
+{% set body_classes = body_class(['header-fixed', 'header-animated', 'header-dark', 'header-transparent', 'sticky-footer']) %}
+{% set grid_size = theme_var('grid-size') %}
+{% set compress = theme_var('production-mode') ? '.min.css' : '.css' %}
+{% use 'blocks/base.html.twig' %}
+<!DOCTYPE html>
+<html lang="{{ grav.language.getActive ?: grav.config.site.default_lang }}">
+<head>
+{% block head deferred %}
+    <meta charset="utf-8" />
+    <title>{% if page.title %}{{ page.title|e('html') }} {% endif %} </title>
+ 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include 'partials/metadata.html.twig' %}
+
+    <link rel="icon" type="image/png" href="{{ url('theme://png/favicon.png') }}" />
+    <link rel="canonical" href="{{ page.url(true, true) }}" />
+{% endblock head %}
+
+	{% block stylesheets %}
+		{% do assets.addCss('theme://css/7c0af8c673faa03e3e8ac32546dda741.css') %}
+		{% do assets.addCss('theme://css/10ff9291c42daa91b76cec29306c4d67.css') %}
+		{% do assets.addCss('theme://css/20f2245d69e4d451f35d07c03a5290e7.css') %}
+		{% do assets.addCss('theme://css/95b446c4a6f544d5cf6013b0d5e820d3.css') %}
+
+	{% endblock %}
+
+ 
+
+    {% block assets deferred %}
+        {{ assets.css()|raw }}
+        {{ assets.js()|raw }}
+    {% endblock %}
+</head>
+<body data-mobile-nav-style="classic" class="custom-cursor">
+    
+	
+	<header> 
+    
+	{% include 'partials/navigation.html.twig' %}		
+			
+</header>
+	
+	
+	
+  
+
+  {% block content %}
+    {{ page.content|raw }}
+{% endblock %}
+
+   
+
+     
+
+    {% block footer %}
+        {% include 'partials/footer.html.twig' %}
+    {% endblock %}
+
+
+
+{% block bottom %}
+    {{ assets.js('bottom')|raw }}
+{% endblock %}
+
+   <script src="{{ url('theme://js/jquery.js') }}"></script>     
+<script src="{{ url('theme://js/vendors.min.js') }}"></script>    
+<script src="{{ url('theme://js/main.js') }}"></script>  
+
+
+</body>
+</html>
